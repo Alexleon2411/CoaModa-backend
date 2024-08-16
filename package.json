@@ -1,0 +1,23 @@
+{
+  "name": "coamoda",
+  "version": "1.0.0",
+  "description": "backend para coamoda",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "Jose Leon @Alexleon2411",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.14",
+    "twilio": "^5.2.2"
+  }
+}
