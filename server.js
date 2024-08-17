@@ -75,7 +75,19 @@ app.post('/realizar-compra', (req, res) => {
   res.send({ mensaje: 'Compra realizada con éxito' });
 });
 
-
+app.use('/', (req,res) => {
+  const htmlRequest = `
+  <html>
+    <heade>
+      <title>NodeJS y express en vercel </title>
+    </heade>
+    <body>
+      <h1> Soy un projecto de node js </h1>
+    </body>
+  </html>
+  `
+  res.send(htmlRequest);
+})
 app.use('/', emailRoutes);
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
