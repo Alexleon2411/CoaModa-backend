@@ -4,8 +4,8 @@
   "description": "backend para coamoda",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js"
+    "dev": "NODE_ENV=development nodemon server.js",
+    "start": "NODE_ENV=production node server.js"
   },
   "author": "Jose Leon @Alexleon2411",
   "license": "ISC",

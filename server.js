@@ -4,7 +4,11 @@ const  emailRoutes = require('./routes/emailRoutes.js')
 const  cors = require('cors')
 const dotenv = require('dotenv')
 
-dotenv.config({ path: '.env.local' })
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config({ path: '.env.local' });
+} else {
+  dotenv.config(); // Esto cargará las variables de entorno normales en Vercel
+}
 
 const app = express();
 const port = 3000;
