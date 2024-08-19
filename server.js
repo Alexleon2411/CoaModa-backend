@@ -14,7 +14,7 @@ const app = express();
 const port = 3000;
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://buhu-coa.vercel.app/'], // URL del frontend
+  origin: ['http://localhost:5173', 'https://buhu-coa.vercel.app'], // URL del frontend
   methods: ['GET', 'POST'], // Métodos permitidos
   allowedHeaders: ['Content-Type'],
   credentials: true,  // Encabezados permitidos
