@@ -5,7 +5,7 @@ const sendEmail = (req, res) => {
   if (!name || !email || !phone || !cart) {
     return res.status(400).send('Todos los campos son requeridos');
   }
-  console.log('desde sent email ')
+  console.log('desde sent email comiento')
  // el siguiente map se ejecuta para poder dividir los podructos y de esta manera enviarla en el correo
   let cartDetails = cart.map(item => `
     Nombre del Producto: ${item.name}
@@ -17,7 +17,7 @@ const sendEmail = (req, res) => {
   `).join('\n');
 
   const mailOptions = {
-    from: '"Maddison Foo Koch 👻" <licett0103@gmail.com>', // sender address
+    from: 'licett0103@gmail.com', // sender address
     to: 'aleeleon2424@gmail.com',
     subject: 'Nueva compra',
     text: `

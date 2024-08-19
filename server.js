@@ -48,16 +48,14 @@ function enviarWhatsAppAlerta(compra) {
   `
     )
     .join('\n');
-
   const mensaje = `
   ¡Nueva compra realizada!
   Cliente: ${cliente}
   Telefono: ${tlf}
   Total: $${total}
   Artículos: ${cartDetails}
-  URL: https://coa-moda-alexleon2411s-projects.vercel.app/admin/ventas?tlf=${tlf}
+  URL: https://buhu-coa.vercel.app/admin/ventas?tlf=${tlf}
   `;
-    console.log(`el mensaje es : ${mensaje}`);
     client.messages
     .create({
         body: mensaje,
@@ -88,7 +86,7 @@ app.use('/', (req,res) => {
   `
   res.send(htmlRequest);
 })
-app.use('/', emailRoutes);
+app.use('/send-email', emailRoutes);
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
