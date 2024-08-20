@@ -81,9 +81,12 @@ app.post('/realizar-compra', async(req, res)   => {
 });
 
 app.use('/', emailRoutes);
+
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
+
+// esta funcion va de ultima porque si se coloca anter interfiere con la conexion de las demas apis
 app.use('/', (req,res) => {
   const htmlRequest = `
   <html>
