@@ -33,7 +33,7 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 
 
-function enviarWhatsAppAlerta(compra) {
+async function enviarWhatsAppAlerta(compra) {
   const { cliente, total, tlf, articulos } = compra;
 
   let cartDetails = articulos
@@ -62,17 +62,28 @@ function enviarWhatsAppAlerta(compra) {
         from: process.env.TWILIO_WHATSAPP_NUMBER,
         to: process.env.MI_WHATSAPP_NUMBER,
     })
-    .then(message => console.log(message.sid))
-    .catch((error) => console.error('Error al enviar mensaje:', error));
+    .then(message => {
+      console.log(message.sid);
+      return true;
+
+    })
+    .catch((error) => {
+      console.error('Error al enviar mensaje:', error);
+      return false;
+    });
 }
 
 
-app.post('/realizar-compra', (req, res) => {
+app.post('/realizar-compra', async(req, res)   => {
   const compra = req.body;
-  enviarWhatsAppAlerta(compra);
-  res.send({ mensaje: 'Compra realizada con éxito' });
+  const response = await enviarWhatsAppAlerta(compra);
+  res.send({ mensaje: 'Compra realizada con éxito', response });
 });
 
+app.use('/', emailRoutes);
+app.listen(port, () => {
+  console.log(`Servidor corriendo en http://localhost:${port}`);
+});
 app.use('/', (req,res) => {
   const htmlRequest = `
   <html>
@@ -86,7 +97,3 @@ app.use('/', (req,res) => {
   `
   res.send(htmlRequest);
 })
-app.use('/send-email', emailRoutes);
-app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
-});
