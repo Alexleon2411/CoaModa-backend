@@ -33,6 +33,20 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 
 
+function rejoinSandbox() {
+  client.messages.create({
+    from: process.env.TWILIO_WHATSAPP_NUMBER, // Número de la sandbox
+    to: process.env.MI_WHATSAPP_NUMBER, // Tu número de WhatsApp
+    body: 'join nearby-energy', // Asegúrate de reemplazar <tu-código-sandbox> con el código real
+  })
+  .then(message => console.log('Reconectado a la sandbox:', message.sid))
+  .catch(error => console.error('Error al reconectar a la sandbox:', error));
+}
+
+// Ejecutar la reconexión cada 3 días (259200000 ms)
+setInterval(rejoinSandbox, 259200000);
+
+
 async function enviarWhatsAppAlerta(compra) {
   const { cliente, total, tlf, articulos } = compra;
 
